@@ -2,3 +2,4 @@ data/
 checkpoint.pth.tar
 data
 model_best.pth.tar
+.idea/
