@@ -16,8 +16,6 @@ import sys
 import torchvision.datasets as datasets
 
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
 # 返回训练集，测试集，以及数据标签类
 def load_hymenoptera():
     data_dir = 'data/hymenoptera_data'
