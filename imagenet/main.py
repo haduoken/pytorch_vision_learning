@@ -1,5 +1,6 @@
 import argparse
 import os
+import numpy as np
 import random
 import shutil
 import time
@@ -398,6 +399,19 @@ def adjust_learning_rate(optimizer, epoch, args):
 
 def accuracy(output, target, topk=(1,)):
     """Computes the accuracy over the k top predictions for the specified values of k"""
+    # 当数据位数小于5的时候将output 和 target 都补0
+    output = output.cpu().detach().numpy()
+    # target = target.cpu().detach().numpy()
+
+    output = np.pad(output,((0,0),(0,10)),mode='constant',
+           constant_values=(0,0))
+    # target = np.pad(target,((0,10)),mode='constant',
+    #                    constant_values=(0,0))
+
+    output = torch.from_numpy(output)
+    target = target.cpu()
+    # target = torch.from_numpy(target)
+
     with torch.no_grad():
         maxk = max(topk)
         batch_size = target.size(0)
